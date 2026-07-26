@@ -13,6 +13,7 @@ Status: Milestone 0 review. Versions are locked in `uv.lock` and `pnpm-lock.yaml
 | OSV Scanner | Lockfile advisory scan for the complete repository | Apache-2.0 | CI only | Database availability and ecosystem coverage; the reusable workflow is pinned to a reviewed commit |
 | Next.js, React | Responsive dashboard skeleton | MIT | Dashboard | Large dependency surface and frequent updates; alternative is a smaller static TypeScript client |
 | brace-expansion 5.0.8 override | Patched glob expansion used by frontend development tooling | MIT | Development and CI | Cross-major override for legacy minimatch consumers; lint and test verification is mandatory |
+| minimatch 3.1.5 compatibility patch | Adapts legacy CommonJS import to brace-expansion 5.0.8 | ISC | Development and CI | One-line vendored patch must be removed once a compatible upstream release is available |
 | PostCSS 8.5.18 override | Patched CSS processing used by Next.js and Vite | MIT | Build tooling | Transitive override may expose plugin compatibility changes; production build verification is mandatory |
 | sharp 0.35.0 override | Next.js image runtime dependency with patched libvips | Apache-2.0 | Dashboard runtime | Overrides Next.js's vulnerable 0.34.x optional range; build and container smoke tests are required before promotion |
 | TypeScript, ESLint, Vitest, type packages | Frontend typing, lint, tests | Apache-2.0 / MIT | Development and CI | Plugin supply chain; lockfile and review required |
@@ -41,3 +42,8 @@ Two narrowly scoped security exceptions bypass that observation window:
 
 These exceptions do not disable `minimumReleaseAge`; they admit only the documented patched
 versions. `postcss@8.5.18` and `sharp@0.35.0` already satisfy the seven-day window.
+
+Legacy `minimatch@3.1.5` expects brace-expansion's old function-style CommonJS export. The
+version-locked patch in `patches/minimatch@3.1.5.patch` changes only that import to the named
+`expand` export provided by patched brace-expansion 5.0.8. pnpm records its patch hash in the
+lockfile and fails installation if the patch no longer applies.

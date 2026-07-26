@@ -26,3 +26,5 @@ minimumReleaseAgeExclude:
   - '@next/swc-win32-x64-msvc@16.2.11'
   - brace-expansion@5.0.8
   - eslint-config-next@16.2.11
+patchedDependencies:
+  minimatch@3.1.5: patches/minimatch@3.1.5.patch

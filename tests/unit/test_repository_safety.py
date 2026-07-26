@@ -53,3 +53,11 @@ def test_frontend_security_overrides_are_pinned() -> None:
     assert "postcss: 8.5.18" in workspace
     assert "sharp: 0.35.0" in workspace
     assert "minimumReleaseAge: 10080" in workspace
+
+
+def test_legacy_minimatch_patch_is_version_locked() -> None:
+    workspace = (ROOT / "pnpm-workspace.yaml").read_text(encoding="utf-8")
+    patch = (ROOT / "patches" / "minimatch@3.1.5.patch").read_text(encoding="utf-8")
+
+    assert "minimatch@3.1.5: patches/minimatch@3.1.5.patch" in workspace
+    assert "require('brace-expansion').expand" in patch
