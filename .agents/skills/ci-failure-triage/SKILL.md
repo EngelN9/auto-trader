@@ -1,6 +1,6 @@
 ---
 name: ci-failure-triage
-description: 當 GitHub Actions、security checks、Docker build 或本機驗證失敗，需要找出第一個真正 root cause、最小重現與連鎖錯誤時使用；預設只診斷，不要在未獲明確要求時修程式、放寬測試或修改風控。
+description: 當 GitHub Actions、security checks、Docker build 或本機驗證失敗，需要找出第一個真正 root cause、最小重現與連鎖錯誤時使用；不要用於在未獲明確要求時修程式、放寬測試或修改風控。
 ---
 
 # CI Failure Triage
