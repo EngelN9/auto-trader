@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Evidence Review"
+  short_description: "Review pull request evidence and trading risk"
+  default_prompt: "Use $pr-evidence-review to review a pull request with findings first and evidence-backed severity."

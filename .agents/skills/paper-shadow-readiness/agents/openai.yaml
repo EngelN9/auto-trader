@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Shadow Readiness"
+  short_description: "Assess paper or shadow operational readiness"
+  default_prompt: "Use $paper-shadow-readiness to assess paper or shadow readiness without approving canary or live."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Auto Trader Milestone Gate"
+  short_description: "Audit milestone evidence and promotion readiness"
+  default_prompt: "Use $auto-trader-milestone-gate to audit the current milestone and produce an evidence-backed acceptance matrix."

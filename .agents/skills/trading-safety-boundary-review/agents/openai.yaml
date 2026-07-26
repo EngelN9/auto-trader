@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trading Safety Boundary Review"
+  short_description: "Audit fail-closed trading safety boundaries"
+  default_prompt: "Use $trading-safety-boundary-review to review trading safety boundaries without enabling execution."

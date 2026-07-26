@@ -1,0 +1,4 @@
+interface:
+  display_name: "Market Data Quality Audit"
+  short_description: "Audit market data quality and tradability gates"
+  default_prompt: "Use $market-data-quality-audit to audit market-data quality and fail-closed tradability gates."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deterministic Backtest Audit"
+  short_description: "Audit backtest bias, accounting, and repeatability"
+  default_prompt: "Use $deterministic-backtest-audit to assess backtest determinism, bias controls, and accounting evidence."

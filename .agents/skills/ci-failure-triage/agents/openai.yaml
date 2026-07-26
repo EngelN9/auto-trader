@@ -1,0 +1,4 @@
+interface:
+  display_name: "CI Failure Triage"
+  short_description: "Find the first actionable CI failure root cause"
+  default_prompt: "Use $ci-failure-triage to diagnose the first actionable CI root cause without editing code by default."

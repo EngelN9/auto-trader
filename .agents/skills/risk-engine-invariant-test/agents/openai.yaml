@@ -1,0 +1,4 @@
+interface:
+  display_name: "Risk Engine Invariant Test"
+  short_description: "Audit risk invariants and deterministic test evidence"
+  default_prompt: "Use $risk-engine-invariant-test to audit risk invariants and produce blocked test designs when implementation is absent."

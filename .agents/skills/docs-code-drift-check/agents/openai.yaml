@@ -1,0 +1,4 @@
+interface:
+  display_name: "Docs Code Drift Check"
+  short_description: "Detect drift across docs, code, tests, and CI"
+  default_prompt: "Use $docs-code-drift-check to identify evidence-backed drift between documentation and repository behavior."
