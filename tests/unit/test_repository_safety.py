@@ -22,6 +22,7 @@ def test_dashboard_runtime_image_excludes_package_managers() -> None:
     dockerfile = (ROOT / "apps" / "dashboard-web" / "Dockerfile").read_text(encoding="utf-8")
     runtime = dockerfile.split("FROM node:24-alpine AS runtime", maxsplit=1)[1]
 
+    assert "COPY patches ./patches" in dockerfile
     assert "rm -rf /usr/local/lib/node_modules/npm" in runtime
     assert 'CMD ["node", "apps/dashboard-web/server.js"]' in runtime
     assert '"dev"' not in runtime
