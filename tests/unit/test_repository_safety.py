@@ -40,3 +40,16 @@ def test_ci_pnpm_version_matches_package_manager() -> None:
 
     assert '"packageManager": "pnpm@11.15.0"' in package_json
     assert 'version: "11.15.0"' in workflow
+
+
+def test_frontend_security_overrides_are_pinned() -> None:
+    dashboard_package = (ROOT / "apps" / "dashboard-web" / "package.json").read_text(
+        encoding="utf-8"
+    )
+    workspace = (ROOT / "pnpm-workspace.yaml").read_text(encoding="utf-8")
+
+    assert '"next": "16.2.11"' in dashboard_package
+    assert "brace-expansion: 5.0.8" in workspace
+    assert "postcss: 8.5.18" in workspace
+    assert "sharp: 0.35.0" in workspace
+    assert "minimumReleaseAge: 10080" in workspace
