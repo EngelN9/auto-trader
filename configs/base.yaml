@@ -1,0 +1,99 @@
+schema_version: "1.0.0"
+system:
+  mode: research
+  timezone: UTC
+  deterministic: true
+  live_enabled: false
+  startup_permitted: true
+
+data:
+  providers: []
+  max_age_seconds: 120
+  quality_threshold: 0.99
+
+strategy:
+  enabled: []
+  rebalance_interval: 15m
+  signal_threshold: "0.20"
+  cost_multiplier: "2.0"
+
+portfolio:
+  target_annualized_vol: "0.08"
+  covariance_method: ewma_shrinkage
+  long_only: true
+
+risk:
+  enabled: false
+  fail_closed: true
+  max_gross_exposure: "0"
+  max_net_exposure: "0"
+
+execution:
+  adapter: mock
+  external_orders_enabled: false
+  withdrawals_enabled: false
+  transfers_enabled: false
+
+control:
+  read_only_default: true
+  require_mfa_in_live: true
+  require_step_up_for:
+    - cancel-all
+    - close-only
+    - halt
+  allowed_origins:
+    - http://localhost:3000
+
+dashboard:
+  environment_banner: true
+  enable_pwa: false
+  cache_sensitive_responses: false
+
+notifications:
+  enabled_channels: []
+  sev1_requires_acknowledgement: true
+
+observability:
+  json_logging: true
+  metrics_enabled: false
+
+disaster_recovery:
+  critical_trading_events_rpo_seconds: 0
+  audit_events_rpo_seconds: 0
+  establish_safe_known_state_rto_minutes: 15
+  full_trading_resume: manual_approval_only
+  backup_restore_drill_frequency_days: 30
+  auto_resume_after_restore: false
+  recovery_mode: halt
+
+leadership:
+  single_active_required: true
+  fencing_token_required: true
+  lease_ttl_seconds: 15
+  fail_on_unknown_authority: true
+
+credential_security:
+  real_credentials_allowed: false
+  withdrawals_permission_allowed: false
+  transfers_permission_allowed: false
+  revoke_on_compromise: true
+
+venue_health:
+  default_state: UNKNOWN
+  unknown_state_action: HALT
+  block_risk_on_withdrawal_suspension: true
+
+quote_asset_risk:
+  minimum_confirming_sources: 2
+  watch_deviation_bps: 50
+  close_only_deviation_bps: 150
+  halt_deviation_bps: 300
+  insufficient_sources_action: HALT
+
+incident_response:
+  sev1_ack_minutes: 5
+  sev2_ack_minutes: 15
+  unresolved_sev1_action: FULL_HALT
+  live_restart_requires_two_person_approval: true
+  post_incident_maximum_mode: shadow
+  primary_and_backup_notification_channels_required: true

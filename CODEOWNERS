@@ -1,0 +1,12 @@
+# Default ownership
+* @EngelN9
+
+# High-risk paths
+/src/trading_system/risk/ @EngelN9
+/src/trading_system/execution/ @EngelN9
+/src/trading_system/brokers/ @EngelN9
+/src/trading_system/control/ @EngelN9
+/services/control-api/ @EngelN9
+/configs/live.yaml @EngelN9
+/infra/deployment/ @EngelN9
+/.github/workflows/ @EngelN9

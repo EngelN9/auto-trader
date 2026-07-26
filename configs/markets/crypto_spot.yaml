@@ -1,0 +1,11 @@
+market:
+  profile_id: crypto_spot
+  asset_class: crypto
+  enabled: true
+  session_model: continuous_24_7
+  leverage_allowed: false
+  short_allowed: false
+  transfers_allowed: false
+  extended_hours_allowed: false
+  corporate_action_checks_required: false
+  venue_and_quote_asset_limits_required: true

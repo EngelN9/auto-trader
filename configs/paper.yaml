@@ -1,0 +1,8 @@
+system:
+  mode: paper
+  startup_permitted: false
+
+risk:
+  enabled: true
+  max_gross_exposure: "0"
+  max_net_exposure: "0"

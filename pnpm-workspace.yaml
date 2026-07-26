@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+
+# Refuse packages published less than seven days ago unless a reviewed exception is added.
+minimumReleaseAge: 10080

@@ -3,7 +3,7 @@
 一個以「可驗證、可重現、可維護」為核心的事件驅動自動交易系統規劃。長期目標是建立 24 小時運行的伺服器端交易應用程式與獨立 Web 管理儀表板，依序支援研究、回測、重播、模擬交易、影子交易、canary 與經人工核准的 live 階段。
 
 > [!WARNING]
-> 本專案目前只有工程規格與分階段開發提示，尚未完成 Milestone 0，也沒有可執行的交易系統。它不保證獲利，不構成投資建議，且不得用於正式下單。
+> 本專案目前是 Milestone 0 的 mock-only 候選骨架，尚未通過人工驗收，也沒有可用於正式交易的系統。它不保證獲利，不構成投資建議，且不得用於正式下單。
 
 ## 核心原則
 
@@ -19,6 +19,9 @@
 
 - [`AGENTS.md`](AGENTS.md)：最高層級工程、安全、測試與營運規格。
 - [`Trader prompts.md`](Trader%20prompts.md)：依 Milestone 拆分的 Codex 開發與驗收提示。
+- [`docs/architecture.md`](docs/architecture.md)：目前的模組化單體與服務邊界。
+- [`docs/dependencies.md`](docs/dependencies.md)：依賴用途、授權與供應鏈風險。
+- [`SECURITY.md`](SECURITY.md)：安全漏洞通報與秘密洩漏處理原則。
 
 ## 建議執行順序
 
@@ -32,14 +35,55 @@
 
 ## 目前狀態
 
-`PLANNING / NOT TRADABLE`
+`MILESTONE 0 CANDIDATE / MOCK ONLY / NOT TRADABLE`
 
-- Milestone 0：未開始
+- Milestone 0：候選實作，等待 CI 與人工驗收
 - 最高允許環境：`research`
 - 正式交易：停用
 - 外部交易所／券商：未選定
 - 正式 API key：不需要，也不得提交
 
+## 本機開發
+
+需求：
+
+- Python 3.12–3.14
+- `uv` 0.11.32 或相容版本
+- Node.js 24
+- pnpm 11.7
+- Docker 與 Docker Compose
+
+```bash
+make setup
+make lint
+make typecheck
+make test
+make dev-up
+```
+
+若本機沒有 GNU Make，可直接執行等價命令：
+
+```bash
+uv sync --frozen --all-groups
+uv run ruff format --check src tests scripts
+uv run ruff check src tests scripts
+uv run mypy
+uv run pytest
+pnpm install --frozen-lockfile
+pnpm lint
+pnpm typecheck
+pnpm test
+docker compose config
+```
+
+啟動後：
+
+- Dashboard：`http://localhost:3000`
+- Control API health：`http://localhost:8000/health`
+- Mock broker health：`http://localhost:8001/health`
+
+所有畫面和服務均使用 mock data。PostgreSQL 也只是本機拓樸佔位，尚未成為權威交易帳本。
+
 ## 授權
 
-目前尚未選定開源授權。公開可見不等於授予複製、修改或散布權；授權方案應由專案擁有者另行確認。
+目前採「未授予使用權」的保守狀態，詳見 [`LICENSE`](LICENSE)。公開可見不等於開源；若要改採 MIT、Apache-2.0 或其他授權，必須由專案擁有者另行確認。

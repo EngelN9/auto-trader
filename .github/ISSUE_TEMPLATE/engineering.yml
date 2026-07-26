@@ -1,0 +1,33 @@
+name: Engineering task
+description: Propose one reviewable implementation or documentation change.
+title: ""
+labels: []
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and exclusions
+      description: State what is and is not included.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance evidence
+      description: List files, tests, commands, and expected evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk and rollback
+      description: Describe failure modes, safety impact, and rollback.
+    validations:
+      required: true
