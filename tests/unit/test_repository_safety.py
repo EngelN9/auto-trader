@@ -32,3 +32,11 @@ def test_security_workflow_uses_osv_instead_of_registry_audit() -> None:
 
     assert "pnpm audit" not in workflow
     assert "google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml" in workflow
+
+
+def test_ci_pnpm_version_matches_package_manager() -> None:
+    package_json = (ROOT / "package.json").read_text(encoding="utf-8")
+    workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+
+    assert '"packageManager": "pnpm@11.15.0"' in package_json
+    assert 'version: "11.15.0"' in workflow
