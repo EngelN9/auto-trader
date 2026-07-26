@@ -45,20 +45,19 @@ jobs:
           version: "0.11.32"
       - name: Audit Python dependencies
         run: uv run --frozen --group security pip-audit
-      - name: Set up pnpm
-        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
-        with:
-          version: "11.7.0"
-          run_install: false
-      - name: Set up Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version: "24"
-          cache: pnpm
-      - name: Install JavaScript dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Audit JavaScript dependencies
-        run: pnpm audit --audit-level high
+
+  osv-dependencies:
+    name: OSV dependency audit
+    permissions:
+      actions: read
+      contents: read
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@9a498708959aeaef5ef730655706c5a1df1edbc2 # v2.3.8
+    with:
+      scan-args: |-
+        --recursive
+        ./
+      upload-sarif: false
+      fail-on-vuln: true
 
   containers:
     name: Container scan

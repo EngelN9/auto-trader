@@ -1,6 +1,9 @@
 packages:
   - apps/*
 
+overrides:
+  sharp: 0.35.0
+
 allowBuilds:
   sharp: true
   unrs-resolver: true

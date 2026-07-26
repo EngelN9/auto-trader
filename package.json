@@ -2,7 +2,7 @@
   "name": "auto-trader-monorepo",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.7.0",
+  "packageManager": "pnpm@11.15.0",
   "scripts": {
     "build": "pnpm --filter dashboard-web build",
     "lint": "pnpm --filter dashboard-web lint",

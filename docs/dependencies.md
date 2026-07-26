@@ -10,7 +10,9 @@ Status: Milestone 0 review. Versions are locked in `uv.lock` and `pnpm-lock.yaml
 | Hatchling, uv | Build and reproducible environment | MIT / MIT or Apache-2.0 | Build tooling | Compromised packages or installer; verify locks and releases |
 | Ruff, mypy, pytest, Hypothesis, pre-commit | Format, lint, typing, tests | MIT / MPL-2.0 | Development and CI | CI supply chain; alternatives are standard-library checks and other maintained tools |
 | pip-audit | Python advisory scan | Apache-2.0 | CI only | Advisory coverage and false negatives; alternative is OSV Scanner |
+| OSV Scanner | Lockfile advisory scan for the complete repository | Apache-2.0 | CI only | Database availability and ecosystem coverage; the reusable workflow is pinned to a reviewed commit |
 | Next.js, React | Responsive dashboard skeleton | MIT | Dashboard | Large dependency surface and frequent updates; alternative is a smaller static TypeScript client |
+| sharp 0.35.0 override | Next.js image runtime dependency with patched libvips | Apache-2.0 | Dashboard runtime | Overrides Next.js's vulnerable 0.34.x optional range; build and container smoke tests are required before promotion |
 | TypeScript, ESLint, Vitest, type packages | Frontend typing, lint, tests | Apache-2.0 / MIT | Development and CI | Plugin supply chain; lockfile and review required |
 | PostgreSQL image | Local topology placeholder | PostgreSQL License | Docker development | Mutable development tag; production must use an approved immutable digest |
 | GitHub Actions listed in workflows | Checkout and tool setup | Mixed open-source | CI only | Actions must be pinned to full commit SHAs and granted minimal permissions |
@@ -18,6 +20,10 @@ Status: Milestone 0 review. Versions are locked in `uv.lock` and `pnpm-lock.yaml
 Maintenance status is evaluated through lockfile review, advisory scanning, release activity, and
 Dependabot or equivalent updates. None of these packages may be silently upgraded in a trading
 release.
+
+The dashboard container uses a multi-stage standalone build. Its runtime image contains only Node.js
+and the traced Next.js server files; npm, pnpm, build caches, and development dependencies are
+excluded from the final image.
 
 The initial locks exclude packages published after 2026-07-19, providing a seven-day observation
 window at bootstrap time. Future dependency pull requests must advance this cutoff deliberately

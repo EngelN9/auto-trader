@@ -16,3 +16,19 @@ def test_environment_example_contains_no_key_material() -> None:
     assert "BEGIN PRIVATE KEY" not in example
     assert "API_KEY=" not in example
     assert "SECRET_KEY=" not in example
+
+
+def test_dashboard_runtime_image_excludes_package_managers() -> None:
+    dockerfile = (ROOT / "apps" / "dashboard-web" / "Dockerfile").read_text(encoding="utf-8")
+    runtime = dockerfile.split("FROM node:24-alpine AS runtime", maxsplit=1)[1]
+
+    assert "rm -rf /usr/local/lib/node_modules/npm" in runtime
+    assert 'CMD ["node", "apps/dashboard-web/server.js"]' in runtime
+    assert '"dev"' not in runtime
+
+
+def test_security_workflow_uses_osv_instead_of_registry_audit() -> None:
+    workflow = (ROOT / ".github" / "workflows" / "security.yml").read_text(encoding="utf-8")
+
+    assert "pnpm audit" not in workflow
+    assert "google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml" in workflow

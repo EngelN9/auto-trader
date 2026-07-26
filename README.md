@@ -50,7 +50,7 @@
 - Python 3.12–3.14
 - `uv` 0.11.32 或相容版本
 - Node.js 24
-- pnpm 11.7
+- pnpm 11.15
 - Docker 與 Docker Compose
 
 ```bash
