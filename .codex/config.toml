@@ -1,0 +1,3 @@
+# Repository-local Codex defaults. These do not grant access to credentials or live trading.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"

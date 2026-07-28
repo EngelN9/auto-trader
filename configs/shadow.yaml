@@ -1,0 +1,7 @@
+system:
+  mode: shadow
+  startup_permitted: false
+
+execution:
+  adapter: mock
+  external_orders_enabled: false

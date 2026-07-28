@@ -1,0 +1,8 @@
+system:
+  mode: canary
+  startup_permitted: false
+  live_enabled: false
+
+execution:
+  adapter: mock
+  external_orders_enabled: false

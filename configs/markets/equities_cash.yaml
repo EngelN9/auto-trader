@@ -1,0 +1,11 @@
+market:
+  profile_id: equities_cash
+  asset_class: equity
+  enabled: false
+  session_model: exchange_calendar
+  leverage_allowed: false
+  short_allowed: false
+  transfers_allowed: false
+  extended_hours_allowed: false
+  corporate_action_checks_required: true
+  venue_and_quote_asset_limits_required: false
